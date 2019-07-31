@@ -1,0 +1,60 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="initializes_setup" id="1697" x="80" y="40">
+    <statement name="CONTENT">
+      <block type="serial_init" id="1698">
+        <field name="SPEED">9600</field>
+        <next>
+          <block type="serial_println" id="1699" inline="false">
+            <value name="CONTENT">
+              <block type="text" id="1700">
+                <field name="TEXT">開始Wi-Fi連線</field>
+              </block>
+            </value>
+            <next>
+              <block type="linkit_wifi_wait_until_ready" id="1701" inline="false">
+                <value name="SSID">
+                  <block type="text" id="1702">
+                    <field name="TEXT">你的熱點帳號</field>
+                  </block>
+                </value>
+                <value name="PASSWORD">
+                  <block type="text" id="1703">
+                    <field name="TEXT">密碼</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="serial_println" id="1704" inline="false">
+                    <value name="CONTENT">
+                      <block type="text" id="1705">
+                        <field name="TEXT">Wi-Fi連線成功!!</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="serial_print" id="1706" inline="false">
+                        <value name="CONTENT">
+                          <block type="text" id="1707">
+                            <field name="TEXT">linkit7697的IP：</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="serial_println" id="1708" inline="false">
+                            <value name="CONTENT">
+                              <block type="linkit_wifi_ip_address" id="1709"></block>
+                            </value>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <next>
+      <block type="initializes_loop" id="1710"></block>
+    </next>
+  </block>
+</xml>

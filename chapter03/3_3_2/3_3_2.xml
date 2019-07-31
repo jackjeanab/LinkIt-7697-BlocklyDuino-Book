@@ -1,0 +1,171 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="initializes_setup" id="1003" x="-137" y="-12">
+    <statement name="CONTENT">
+      <block type="variables_set" id="1004" inline="true">
+        <field name="TYPE">Number</field>
+        <field name="VAR">Sw</field>
+        <value name="VALUE">
+          <block type="math_number" id="1005">
+            <field name="NUM">1</field>
+          </block>
+        </value>
+        <next>
+          <block type="variables_set" id="1006" inline="true">
+            <field name="TYPE">Number</field>
+            <field name="VAR">SwOld</field>
+            <value name="VALUE">
+              <block type="math_number" id="1007">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="1008" inline="true">
+                <field name="TYPE">Number</field>
+                <field name="VAR">LED</field>
+                <value name="VALUE">
+                  <block type="math_number" id="1009">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <next>
+      <block type="initializes_loop" id="1010">
+        <statement name="CONTENT">
+          <block type="variables_set" id="1011" inline="true">
+            <field name="TYPE">Number</field>
+            <field name="VAR">Sw</field>
+            <value name="VALUE">
+              <block type="inout_custom_digital_read" id="1012" inline="true">
+                <value name="PIN_READ">
+                  <block type="math_number" id="1013">
+                    <field name="NUM">5</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="controls_if" id="1014" inline="false">
+                <value name="IF0">
+                  <block type="logic_operation" id="1015" inline="true">
+                    <field name="OP">AND</field>
+                    <value name="A">
+                      <block type="logic_compare" id="1016" inline="true">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                          <block type="variables_get" id="1017">
+                            <field name="TYPE">Number</field>
+                            <field name="VAR">SwOld</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="1018">
+                            <field name="NUM">1</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="logic_compare" id="1019" inline="true">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                          <block type="variables_get" id="1020">
+                            <field name="TYPE">Number</field>
+                            <field name="VAR">Sw</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="1021">
+                            <field name="NUM">0</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="variables_set" id="1022" inline="true">
+                    <field name="TYPE">Number</field>
+                    <field name="VAR">LED</field>
+                    <value name="VALUE">
+                      <block type="math_arithmetic" id="1023" inline="true">
+                        <field name="OP">MINUS</field>
+                        <value name="A">
+                          <block type="math_number" id="1024">
+                            <field name="NUM">1</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="variables_get" id="1025">
+                            <field name="TYPE">Number</field>
+                            <field name="VAR">LED</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="delay_custom" id="1026" inline="false">
+                        <value name="DELAY_TIME">
+                          <block type="math_number" id="1027">
+                            <field name="NUM">100</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <next>
+                  <block type="variables_set" id="1028" inline="true">
+                    <field name="TYPE">Number</field>
+                    <field name="VAR">SwOld</field>
+                    <value name="VALUE">
+                      <block type="variables_get" id="1029">
+                        <field name="TYPE">Number</field>
+                        <field name="VAR">Sw</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="controls_if" id="1030" inline="false">
+                        <mutation else="1"></mutation>
+                        <value name="IF0">
+                          <block type="logic_compare" id="1031" inline="true">
+                            <field name="OP">EQ</field>
+                            <value name="A">
+                              <block type="variables_get" id="1032">
+                                <field name="TYPE">Number</field>
+                                <field name="VAR">LED</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="math_number" id="1033">
+                                <field name="NUM">1</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <statement name="DO0">
+                          <block type="inout_buildin_led" id="1034">
+                            <field name="STAT">HIGH</field>
+                          </block>
+                        </statement>
+                        <statement name="ELSE">
+                          <block type="inout_buildin_led" id="1035">
+                            <field name="STAT">LOW</field>
+                          </block>
+                        </statement>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

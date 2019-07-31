@@ -1,0 +1,223 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="initializes_setup" id="1861" x="-331" y="-76">
+    <statement name="CONTENT">
+      <block type="serial_init" id="1862">
+        <field name="SPEED">9600</field>
+        <next>
+          <block type="serial_println" id="1863" inline="false">
+            <value name="CONTENT">
+              <block type="text" id="1864">
+                <field name="TEXT">WIFI連線開始</field>
+              </block>
+            </value>
+            <next>
+              <block type="linkit_wifi_wait_until_ready" id="1865" inline="false">
+                <value name="SSID">
+                  <block type="text" id="1866">
+                    <field name="TEXT">你的WiFi熱點帳號</field>
+                  </block>
+                </value>
+                <value name="PASSWORD">
+                  <block type="text" id="1867">
+                    <field name="TEXT">密碼</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="serial_println" id="1868" inline="false">
+                    <value name="CONTENT">
+                      <block type="text" id="1869">
+                        <field name="TEXT">WIFI連線成功</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="serial_println" id="1870" inline="false">
+                        <value name="CONTENT">
+                          <block type="text_join" id="1871" inline="false">
+                            <mutation items="2"></mutation>
+                            <value name="ADD0">
+                              <block type="text" id="1872">
+                                <field name="TEXT">IP是</field>
+                              </block>
+                            </value>
+                            <value name="ADD1">
+                              <block type="linkit_wifi_ip_address" id="1873"></block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="delay_custom" id="1874" inline="false">
+                            <value name="DELAY_TIME">
+                              <block type="math_number" id="1875">
+                                <field name="NUM">1000</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="mcs" id="1876" inline="false">
+                                <value name="DEVICEID">
+                                  <block type="text" id="1877">
+                                    <field name="TEXT">MCS測試裝置的DeviceID</field>
+                                  </block>
+                                </value>
+                                <value name="DEVICEKEY">
+                                  <block type="text" id="1878">
+                                    <field name="TEXT">MCS測試裝置的DeviceKey</field>
+                                  </block>
+                                </value>
+                                <statement name="CONTENT">
+                                  <block type="mcs_set_display_channel" id="1879" inline="true">
+                                    <field name="TYPE">int</field>
+                                    <value name="DISPLAY_CHANNEL">
+                                      <block type="text" id="1880">
+                                        <field name="TEXT">Temperature</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="mcs_set_display_channel" id="1881" inline="true">
+                                        <field name="TYPE">int</field>
+                                        <value name="DISPLAY_CHANNEL">
+                                          <block type="text" id="1882">
+                                            <field name="TEXT">Humidity</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </statement>
+                                <next>
+                                  <block type="serial_println" id="1883" inline="false">
+                                    <value name="CONTENT">
+                                      <block type="text" id="1884">
+                                        <field name="TEXT">MCS連線成功</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <next>
+      <block type="initializes_loop" id="1885">
+        <statement name="CONTENT">
+          <block type="mcs_process" id="1886">
+            <next>
+              <block type="variables_set" id="1887" inline="true">
+                <field name="TYPE">Number</field>
+                <field name="VAR">Temp</field>
+                <value name="VALUE">
+                  <block type="dht_read" id="1888">
+                    <field name="SENSOR">DHT11</field>
+                    <field name="PIN">2</field>
+                    <field name="TYPE">C</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="1889" inline="true">
+                    <field name="TYPE">Number</field>
+                    <field name="VAR">Humi</field>
+                    <value name="VALUE">
+                      <block type="dht_read" id="1890">
+                        <field name="SENSOR">DHT11</field>
+                        <field name="PIN">2</field>
+                        <field name="TYPE">h</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="serial_println" id="1891" inline="false">
+                        <value name="CONTENT">
+                          <block type="text_join" id="1892" inline="false">
+                            <mutation items="2"></mutation>
+                            <value name="ADD0">
+                              <block type="text" id="1893">
+                                <field name="TEXT">溫度為</field>
+                              </block>
+                            </value>
+                            <value name="ADD1">
+                              <block type="variables_get" id="1894">
+                                <field name="TYPE">Number</field>
+                                <field name="VAR">Temp</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="serial_println" id="1895" inline="false">
+                            <value name="CONTENT">
+                              <block type="text_join" id="1896" inline="false">
+                                <mutation items="2"></mutation>
+                                <value name="ADD0">
+                                  <block type="text" id="1897">
+                                    <field name="TEXT">相對濕度為</field>
+                                  </block>
+                                </value>
+                                <value name="ADD1">
+                                  <block type="variables_get" id="1898">
+                                    <field name="TYPE">Number</field>
+                                    <field name="VAR">Humi</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="mcs_channel2_value" id="1899" inline="true">
+                                <value name="CHANNEL2_VALUE">
+                                  <block type="text" id="1900">
+                                    <field name="TEXT">Temperature</field>
+                                  </block>
+                                </value>
+                                <value name="SET_VALUE">
+                                  <block type="variables_get" id="1901">
+                                    <field name="TYPE">Number</field>
+                                    <field name="VAR">Temp</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="mcs_channel2_value" id="1902" inline="true">
+                                    <value name="CHANNEL2_VALUE">
+                                      <block type="text" id="1903">
+                                        <field name="TEXT">Humidity</field>
+                                      </block>
+                                    </value>
+                                    <value name="SET_VALUE">
+                                      <block type="variables_get" id="1904">
+                                        <field name="TYPE">Number</field>
+                                        <field name="VAR">Humi</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="delay_custom" id="1905" inline="false">
+                                        <value name="DELAY_TIME">
+                                          <block type="math_number" id="1906">
+                                            <field name="NUM">1000</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

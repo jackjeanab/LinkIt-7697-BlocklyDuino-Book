@@ -1,0 +1,91 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="initializes_setup" id="1159" x="-312" y="-37">
+    <statement name="CONTENT">
+      <block type="serial_init" id="1160">
+        <field name="SPEED">9600</field>
+      </block>
+    </statement>
+    <next>
+      <block type="initializes_loop" id="1161">
+        <statement name="CONTENT">
+          <block type="variables_set" id="1162" inline="true">
+            <field name="TYPE">String</field>
+            <field name="VAR">RfidNo</field>
+            <value name="VALUE">
+              <block type="mfrc522_read" id="1163">
+                <field name="SENSOR">DUMMY</field>
+                <field name="SIGNAL">SPI</field>
+              </block>
+            </value>
+            <next>
+              <block type="controls_if" id="1164" inline="false">
+                <value name="IF0">
+                  <block type="logic_compare" id="1165" inline="true">
+                    <field name="OP">NEQ</field>
+                    <value name="A">
+                      <block type="variables_get" id="1166">
+                        <field name="TYPE">String</field>
+                        <field name="VAR">RfidNo</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="text" id="1167">
+                        <field name="TEXT"></field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="serial_println" id="1168" inline="false">
+                    <value name="CONTENT">
+                      <block type="text" id="1169">
+                        <field name="TEXT">偵測到Mifare S50卡片</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="serial_print" id="1170" inline="false">
+                        <value name="CONTENT">
+                          <block type="text" id="1171">
+                            <field name="TEXT">卡片卡號為：</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="serial_println" id="1172" inline="false">
+                            <value name="CONTENT">
+                              <block type="variables_get" id="1173">
+                                <field name="TYPE">String</field>
+                                <field name="VAR">RfidNo</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="serial_println" id="1174" inline="false">
+                                <value name="CONTENT">
+                                  <block type="text" id="1175">
+                                    <field name="TEXT"></field>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <next>
+                  <block type="delay_custom" id="1176" inline="false">
+                    <value name="DELAY_TIME">
+                      <block type="math_number" id="1177">
+                        <field name="NUM">1000</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

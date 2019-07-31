@@ -1,0 +1,138 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="initializes_setup" id="1178" x="-337" y="-37">
+    <statement name="CONTENT">
+      <block type="serial_init" id="1179">
+        <field name="SPEED">9600</field>
+        <next>
+          <block type="inout_digital_write" id="1180">
+            <field name="PIN">3</field>
+            <field name="STAT">LOW</field>
+            <next>
+              <block type="serial_println" id="1181" inline="false">
+                <value name="CONTENT">
+                  <block type="text" id="1182">
+                    <field name="TEXT">大門已關閉</field>
+                  </block>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <next>
+      <block type="initializes_loop" id="1183">
+        <statement name="CONTENT">
+          <block type="variables_set" id="1184" inline="true">
+            <field name="TYPE">String</field>
+            <field name="VAR">RFidNo</field>
+            <value name="VALUE">
+              <block type="mfrc522_read" id="1185">
+                <field name="SENSOR">DUMMY</field>
+                <field name="SIGNAL">SPI</field>
+              </block>
+            </value>
+            <next>
+              <block type="controls_if" id="1186" inline="false">
+                <value name="IF0">
+                  <block type="logic_compare" id="1187" inline="true">
+                    <field name="OP">NEQ</field>
+                    <value name="A">
+                      <block type="variables_get" id="1188">
+                        <field name="TYPE">String</field>
+                        <field name="VAR">RFidNo</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="text" id="1189">
+                        <field name="TEXT"></field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="controls_if" id="1190" inline="false">
+                    <mutation else="1"></mutation>
+                    <value name="IF0">
+                      <block type="logic_compare" id="1191" inline="true">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                          <block type="variables_get" id="1192">
+                            <field name="TYPE">String</field>
+                            <field name="VAR">RFidNo</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="text" id="1193">
+                            <field name="TEXT">你的RFID卡號</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="inout_digital_write" id="1194">
+                        <field name="PIN">3</field>
+                        <field name="STAT">HIGH</field>
+                        <next>
+                          <block type="serial_println" id="1195" inline="false">
+                            <value name="CONTENT">
+                              <block type="text" id="1196">
+                                <field name="TEXT">大門已開啟</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="delay_custom" id="1197" inline="false">
+                                <value name="DELAY_TIME">
+                                  <block type="math_number" id="1198">
+                                    <field name="NUM">5000</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="inout_digital_write" id="1199">
+                                    <field name="PIN">3</field>
+                                    <field name="STAT">LOW</field>
+                                    <next>
+                                      <block type="serial_println" id="1200" inline="false">
+                                        <value name="CONTENT">
+                                          <block type="text" id="1201">
+                                            <field name="TEXT">大門已關閉</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <statement name="ELSE">
+                      <block type="serial_println" id="1202" inline="false">
+                        <value name="CONTENT">
+                          <block type="text" id="1203">
+                            <field name="TEXT">偵測到RFID卡片，不是開門卡片!</field>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                  </block>
+                </statement>
+                <next>
+                  <block type="delay_custom" id="1204" inline="false">
+                    <value name="DELAY_TIME">
+                      <block type="math_number" id="1205">
+                        <field name="NUM">1000</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

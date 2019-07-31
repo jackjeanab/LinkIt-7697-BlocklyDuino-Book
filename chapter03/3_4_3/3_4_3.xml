@@ -1,0 +1,124 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="initializes_setup" id="1079" x="-12" y="38">
+    <statement name="CONTENT">
+      <block type="lcd_i2c_setting" id="1080">
+        <field name="LCD_DIM">1602</field>
+        <field name="PIN">PIN</field>
+        <field name="I2C_ADDRESS">0x3F</field>
+        <next>
+          <block type="lcd_i2c_clear" id="1081">
+            <next>
+              <block type="lcd_i2c_set_cursor" id="1082" inline="true">
+                <value name="COL">
+                  <block type="math_number" id="1083">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+                <value name="ROW">
+                  <block type="math_number" id="1084">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="lcd_i2c_put" id="1085" inline="false">
+                    <value name="VALUE">
+                      <block type="text" id="1086">
+                        <field name="TEXT">Welcome to</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="lcd_i2c_set_cursor" id="1087" inline="true">
+                        <value name="COL">
+                          <block type="math_number" id="1088">
+                            <field name="NUM">0</field>
+                          </block>
+                        </value>
+                        <value name="ROW">
+                          <block type="math_number" id="1089">
+                            <field name="NUM">1</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="lcd_i2c_put" id="1090" inline="false">
+                            <value name="VALUE">
+                              <block type="text" id="1091">
+                                <field name="TEXT">Electronic Dice</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="delay_custom" id="1092" inline="false">
+                                <value name="DELAY_TIME">
+                                  <block type="math_number" id="1093">
+                                    <field name="NUM">3000</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="lcd_i2c_clear" id="1094"></block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <next>
+      <block type="initializes_loop" id="1095">
+        <statement name="CONTENT">
+          <block type="lcd_i2c_set_cursor" id="1096" inline="true">
+            <value name="COL">
+              <block type="math_number" id="1097">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+            <value name="ROW">
+              <block type="math_number" id="1098">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+            <next>
+              <block type="adxl345_detect" id="1099">
+                <field name="SENSOR">DUMMY</field>
+                <next>
+                  <block type="controls_if" id="1100" inline="false">
+                    <value name="IF0">
+                      <block type="adxl345_gesture_detected" id="1101">
+                        <field name="SENSOR">DUMMY</field>
+                        <field name="GESTURE">Activity</field>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="lcd_i2c_put" id="1102" inline="false">
+                        <value name="VALUE">
+                          <block type="math_random_max_min" id="1103" inline="true">
+                            <value name="MIN">
+                              <block type="math_number" id="1104">
+                                <field name="NUM">1</field>
+                              </block>
+                            </value>
+                            <value name="MAX">
+                              <block type="math_number" id="1105">
+                                <field name="NUM">6</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

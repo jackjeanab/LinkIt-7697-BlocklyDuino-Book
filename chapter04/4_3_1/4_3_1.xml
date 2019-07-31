@@ -1,0 +1,355 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="initializes_setup" id="1333" x="-337" y="-187">
+    <statement name="CONTENT">
+      <block type="linkit_lremote" id="1334" inline="false">
+        <field name="ORIENTATION">vertical</field>
+        <value name="DEVICEID">
+          <block type="text" id="1335">
+            <field name="TEXT">jackjean</field>
+          </block>
+        </value>
+        <value name="COLUMN">
+          <block type="math_number" id="1336">
+            <field name="NUM">4</field>
+          </block>
+        </value>
+        <value name="ROW">
+          <block type="math_number" id="1337">
+            <field name="NUM">5</field>
+          </block>
+        </value>
+        <statement name="CONTENT">
+          <block type="linkit_lremote_settext" id="1338" inline="true">
+            <field name="COLOUR">gray</field>
+            <value name="NAME">
+              <block type="text" id="1339">
+                <field name="TEXT">label1</field>
+              </block>
+            </value>
+            <value name="CONTENT">
+              <block type="text" id="1340">
+                <field name="TEXT">手機連續控制</field>
+              </block>
+            </value>
+            <value name="COLUMN">
+              <block type="math_number" id="1341">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+            <value name="ROW">
+              <block type="math_number" id="1342">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+            <value name="WIDTH">
+              <block type="math_number" id="1343">
+                <field name="NUM">4</field>
+              </block>
+            </value>
+            <value name="HEIGHT">
+              <block type="math_number" id="1344">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+            <next>
+              <block type="linkit_lremote_setbuttoncircle" id="1345" inline="true">
+                <field name="COLOUR">green</field>
+                <value name="NAME">
+                  <block type="text" id="1346">
+                    <field name="TEXT">circle1</field>
+                  </block>
+                </value>
+                <value name="CONTENT">
+                  <block type="text" id="1347">
+                    <field name="TEXT">Count累增</field>
+                  </block>
+                </value>
+                <value name="COLUMN">
+                  <block type="math_number" id="1348">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+                <value name="ROW">
+                  <block type="math_number" id="1349">
+                    <field name="NUM">1</field>
+                  </block>
+                </value>
+                <value name="WIDTH">
+                  <block type="math_number" id="1350">
+                    <field name="NUM">2</field>
+                  </block>
+                </value>
+                <value name="HEIGHT">
+                  <block type="math_number" id="1351">
+                    <field name="NUM">2</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="linkit_lremote_setbuttoncircle" id="1352" inline="true">
+                    <field name="COLOUR">blue</field>
+                    <value name="NAME">
+                      <block type="text" id="1353">
+                        <field name="TEXT">circle2</field>
+                      </block>
+                    </value>
+                    <value name="CONTENT">
+                      <block type="text" id="1354">
+                        <field name="TEXT">Count遞減</field>
+                      </block>
+                    </value>
+                    <value name="COLUMN">
+                      <block type="math_number" id="1355">
+                        <field name="NUM">2</field>
+                      </block>
+                    </value>
+                    <value name="ROW">
+                      <block type="math_number" id="1356">
+                        <field name="NUM">1</field>
+                      </block>
+                    </value>
+                    <value name="WIDTH">
+                      <block type="math_number" id="1357">
+                        <field name="NUM">2</field>
+                      </block>
+                    </value>
+                    <value name="HEIGHT">
+                      <block type="math_number" id="1358">
+                        <field name="NUM">2</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="linkit_lremote_settext" id="1359" inline="true">
+                        <field name="COLOUR">gray</field>
+                        <value name="NAME">
+                          <block type="text" id="1360">
+                            <field name="TEXT">label2</field>
+                          </block>
+                        </value>
+                        <value name="CONTENT">
+                          <block type="text" id="1361">
+                            <field name="TEXT">曾希哲製作</field>
+                          </block>
+                        </value>
+                        <value name="COLUMN">
+                          <block type="math_number" id="1362">
+                            <field name="NUM">0</field>
+                          </block>
+                        </value>
+                        <value name="ROW">
+                          <block type="math_number" id="1363">
+                            <field name="NUM">4</field>
+                          </block>
+                        </value>
+                        <value name="WIDTH">
+                          <block type="math_number" id="1364">
+                            <field name="NUM">4</field>
+                          </block>
+                        </value>
+                        <value name="HEIGHT">
+                          <block type="math_number" id="1365">
+                            <field name="NUM">1</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <next>
+          <block type="lcd_i2c_setting" id="1366">
+            <field name="LCD_DIM">1602</field>
+            <field name="PIN">PIN</field>
+            <field name="I2C_ADDRESS">0x3F</field>
+            <next>
+              <block type="lcd_i2c_light" id="1367">
+                <field name="BACKLIGHT_STATE">ON</field>
+                <next>
+                  <block type="variables_set" id="1368" inline="true">
+                    <field name="TYPE">Number</field>
+                    <field name="VAR">Count</field>
+                    <value name="VALUE">
+                      <block type="math_number" id="1369">
+                        <field name="NUM">0</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <next>
+      <block type="initializes_loop" id="1370">
+        <statement name="CONTENT">
+          <block type="linkit_lremote_process" id="1371">
+            <next>
+              <block type="controls_if" id="1372" inline="false">
+                <value name="IF0">
+                  <block type="linkit_lremote_is_written" id="1373">
+                    <field name="NAME">circle1</field>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="controls_if" id="1374" inline="false">
+                    <value name="IF0">
+                      <block type="logic_compare" id="1375" inline="true">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                          <block type="linkit_lremote_read_value" id="1376">
+                            <field name="NAME">circle1</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="1377">
+                            <field name="NUM">1</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="variables_set" id="1378" inline="true">
+                        <field name="TYPE">Number</field>
+                        <field name="VAR">Count</field>
+                        <value name="VALUE">
+                          <block type="math_arithmetic" id="1379" inline="true">
+                            <field name="OP">ADD</field>
+                            <value name="A">
+                              <block type="variables_get" id="1380">
+                                <field name="TYPE">Number</field>
+                                <field name="VAR">Count</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="math_number" id="1381">
+                                <field name="NUM">1</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                  </block>
+                </statement>
+                <next>
+                  <block type="controls_if" id="1382" inline="false">
+                    <value name="IF0">
+                      <block type="linkit_lremote_is_written" id="1383">
+                        <field name="NAME">circle2</field>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="controls_if" id="1384" inline="false">
+                        <value name="IF0">
+                          <block type="logic_compare" id="1385" inline="true">
+                            <field name="OP">EQ</field>
+                            <value name="A">
+                              <block type="linkit_lremote_read_value" id="1386">
+                                <field name="NAME">circle2</field>
+                              </block>
+                            </value>
+                            <value name="B">
+                              <block type="math_number" id="1387">
+                                <field name="NUM">1</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <statement name="DO0">
+                          <block type="variables_set" id="1388" inline="true">
+                            <field name="TYPE">Number</field>
+                            <field name="VAR">Count</field>
+                            <value name="VALUE">
+                              <block type="math_arithmetic" id="1389" inline="true">
+                                <field name="OP">MINUS</field>
+                                <value name="A">
+                                  <block type="variables_get" id="1390">
+                                    <field name="TYPE">Number</field>
+                                    <field name="VAR">Count</field>
+                                  </block>
+                                </value>
+                                <value name="B">
+                                  <block type="math_number" id="1391">
+                                    <field name="NUM">1</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                          </block>
+                        </statement>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="lcd_i2c_clear" id="1392">
+                        <next>
+                          <block type="lcd_i2c_set_cursor" id="1393" inline="true">
+                            <value name="COL">
+                              <block type="math_number" id="1394">
+                                <field name="NUM">0</field>
+                              </block>
+                            </value>
+                            <value name="ROW">
+                              <block type="math_number" id="1395">
+                                <field name="NUM">0</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="lcd_i2c_put" id="1396" inline="false">
+                                <value name="VALUE">
+                                  <block type="text" id="1397">
+                                    <field name="TEXT">Count:</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="lcd_i2c_set_cursor" id="1398" inline="true">
+                                    <value name="COL">
+                                      <block type="math_number" id="1399">
+                                        <field name="NUM">0</field>
+                                      </block>
+                                    </value>
+                                    <value name="ROW">
+                                      <block type="math_number" id="1400">
+                                        <field name="NUM">1</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="lcd_i2c_put" id="1401" inline="false">
+                                        <value name="VALUE">
+                                          <block type="variables_get" id="1402">
+                                            <field name="TYPE">Number</field>
+                                            <field name="VAR">Count</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="delay_custom" id="1403" inline="false">
+                                            <value name="DELAY_TIME">
+                                              <block type="math_number" id="1404">
+                                                <field name="NUM">100</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

@@ -1,0 +1,533 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="initializes_setup" id="777" x="13" y="13">
+    <statement name="CONTENT">
+      <block type="lcd_i2c_setting" id="778">
+        <field name="LCD_DIM">1602</field>
+        <field name="PIN">PIN</field>
+        <field name="I2C_ADDRESS">0x3F</field>
+        <next>
+          <block type="lcd_i2c_light" id="779">
+            <field name="BACKLIGHT_STATE">ON</field>
+            <next>
+              <block type="lcd_i2c_clear" id="780">
+                <next>
+                  <block type="lcd_i2c_set_cursor" id="781" inline="true">
+                    <value name="COL">
+                      <block type="math_number" id="782">
+                        <field name="NUM">0</field>
+                      </block>
+                    </value>
+                    <value name="ROW">
+                      <block type="math_number" id="783">
+                        <field name="NUM">0</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="lcd_i2c_put" id="784" inline="false">
+                        <value name="VALUE">
+                          <block type="text" id="785">
+                            <field name="TEXT">Hygrothermograph</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="lcd_i2c_set_cursor" id="786" inline="true">
+                            <value name="COL">
+                              <block type="math_number" id="787">
+                                <field name="NUM">0</field>
+                              </block>
+                            </value>
+                            <value name="ROW">
+                              <block type="math_number" id="788">
+                                <field name="NUM">1</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="lcd_i2c_put" id="789" inline="false">
+                                <value name="VALUE">
+                                  <block type="text" id="790">
+                                    <field name="TEXT">Start now!!</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="delay_custom" id="791" inline="false">
+                                    <value name="DELAY_TIME">
+                                      <block type="math_number" id="792">
+                                        <field name="NUM">5000</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <next>
+      <block type="initializes_loop" id="793">
+        <statement name="CONTENT">
+          <block type="variables_set" id="794" inline="true">
+            <field name="TYPE">Number</field>
+            <field name="VAR">Temp</field>
+            <value name="VALUE">
+              <block type="dht_read" id="795">
+                <field name="SENSOR">DHT11</field>
+                <field name="PIN">2</field>
+                <field name="TYPE">C</field>
+              </block>
+            </value>
+            <next>
+              <block type="variables_set" id="796" inline="true">
+                <field name="TYPE">Number</field>
+                <field name="VAR">Humi</field>
+                <value name="VALUE">
+                  <block type="dht_read" id="797">
+                    <field name="SENSOR">DHT11</field>
+                    <field name="PIN">2</field>
+                    <field name="TYPE">h</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="controls_if" id="798" inline="false">
+                    <mutation else="1"></mutation>
+                    <value name="IF0">
+                      <block type="logic_compare" id="799" inline="true">
+                        <field name="OP">EQ</field>
+                        <value name="A">
+                          <block type="inout_digital_read" id="800">
+                            <field name="PIN">4</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="inout_highlow" id="801">
+                            <field name="BOOL">LOW</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="lcd_i2c_clear" id="833">
+                        <next>
+                          <block type="lcd_i2c_set_cursor" id="834" inline="true">
+                            <value name="COL">
+                              <block type="math_number" id="835">
+                                <field name="NUM">0</field>
+                              </block>
+                            </value>
+                            <value name="ROW">
+                              <block type="math_number" id="836">
+                                <field name="NUM">0</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="lcd_i2c_put" id="837" inline="false">
+                                <value name="VALUE">
+                                  <block type="text" id="838">
+                                    <field name="TEXT">comfort index :</field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="lcd_i2c_set_cursor" id="839" inline="true">
+                                    <value name="COL">
+                                      <block type="math_number" id="840">
+                                        <field name="NUM">0</field>
+                                      </block>
+                                    </value>
+                                    <value name="ROW">
+                                      <block type="math_number" id="841">
+                                        <field name="NUM">1</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="controls_if" id="842" inline="false">
+                                        <mutation elseif="4" else="1"></mutation>
+                                        <value name="IF0">
+                                          <block type="logic_compare" id="843" inline="true">
+                                            <field name="OP">LT</field>
+                                            <value name="A">
+                                              <block type="variables_get" id="844">
+                                                <field name="TYPE">Number</field>
+                                                <field name="VAR">Temp</field>
+                                              </block>
+                                            </value>
+                                            <value name="B">
+                                              <block type="math_number" id="845">
+                                                <field name="NUM">11</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <statement name="DO0">
+                                          <block type="lcd_i2c_put" id="846" inline="false">
+                                            <value name="VALUE">
+                                              <block type="text" id="847">
+                                                <field name="TEXT">very cold</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </statement>
+                                        <value name="IF1">
+                                          <block type="logic_operation" id="848" inline="true">
+                                            <field name="OP">AND</field>
+                                            <value name="A">
+                                              <block type="logic_compare" id="849" inline="true">
+                                                <field name="OP">GTE</field>
+                                                <value name="A">
+                                                  <block type="variables_get" id="850">
+                                                    <field name="TYPE">Number</field>
+                                                    <field name="VAR">Temp</field>
+                                                  </block>
+                                                </value>
+                                                <value name="B">
+                                                  <block type="math_number" id="851">
+                                                    <field name="NUM">11</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <value name="B">
+                                              <block type="logic_compare" id="852" inline="true">
+                                                <field name="OP">LT</field>
+                                                <value name="A">
+                                                  <block type="variables_get" id="853">
+                                                    <field name="TYPE">Number</field>
+                                                    <field name="VAR">Temp</field>
+                                                  </block>
+                                                </value>
+                                                <value name="B">
+                                                  <block type="math_number" id="854">
+                                                    <field name="NUM">16</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <statement name="DO1">
+                                          <block type="lcd_i2c_put" id="855" inline="false">
+                                            <value name="VALUE">
+                                              <block type="text" id="856">
+                                                <field name="TEXT">cold</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </statement>
+                                        <value name="IF2">
+                                          <block type="logic_operation" id="857" inline="true">
+                                            <field name="OP">AND</field>
+                                            <value name="A">
+                                              <block type="logic_compare" id="858" inline="true">
+                                                <field name="OP">GTE</field>
+                                                <value name="A">
+                                                  <block type="variables_get" id="859">
+                                                    <field name="TYPE">Number</field>
+                                                    <field name="VAR">Temp</field>
+                                                  </block>
+                                                </value>
+                                                <value name="B">
+                                                  <block type="math_number" id="860">
+                                                    <field name="NUM">16</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <value name="B">
+                                              <block type="logic_compare" id="861" inline="true">
+                                                <field name="OP">LT</field>
+                                                <value name="A">
+                                                  <block type="variables_get" id="862">
+                                                    <field name="TYPE">Number</field>
+                                                    <field name="VAR">Temp</field>
+                                                  </block>
+                                                </value>
+                                                <value name="B">
+                                                  <block type="math_number" id="863">
+                                                    <field name="NUM">20</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <statement name="DO2">
+                                          <block type="lcd_i2c_put" id="864" inline="false">
+                                            <value name="VALUE">
+                                              <block type="text" id="865">
+                                                <field name="TEXT">cool</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </statement>
+                                        <value name="IF3">
+                                          <block type="logic_operation" id="866" inline="true">
+                                            <field name="OP">AND</field>
+                                            <value name="A">
+                                              <block type="logic_compare" id="867" inline="true">
+                                                <field name="OP">GTE</field>
+                                                <value name="A">
+                                                  <block type="variables_get" id="868">
+                                                    <field name="TYPE">Number</field>
+                                                    <field name="VAR">Temp</field>
+                                                  </block>
+                                                </value>
+                                                <value name="B">
+                                                  <block type="math_number" id="869">
+                                                    <field name="NUM">20</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <value name="B">
+                                              <block type="logic_compare" id="870" inline="true">
+                                                <field name="OP">LT</field>
+                                                <value name="A">
+                                                  <block type="variables_get" id="871">
+                                                    <field name="TYPE">Number</field>
+                                                    <field name="VAR">Temp</field>
+                                                  </block>
+                                                </value>
+                                                <value name="B">
+                                                  <block type="math_number" id="872">
+                                                    <field name="NUM">27</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <statement name="DO3">
+                                          <block type="lcd_i2c_put" id="873" inline="false">
+                                            <value name="VALUE">
+                                              <block type="text" id="874">
+                                                <field name="TEXT">comfortable</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </statement>
+                                        <value name="IF4">
+                                          <block type="logic_operation" id="875" inline="true">
+                                            <field name="OP">AND</field>
+                                            <value name="A">
+                                              <block type="logic_compare" id="876" inline="true">
+                                                <field name="OP">GTE</field>
+                                                <value name="A">
+                                                  <block type="variables_get" id="877">
+                                                    <field name="TYPE">Number</field>
+                                                    <field name="VAR">Temp</field>
+                                                  </block>
+                                                </value>
+                                                <value name="B">
+                                                  <block type="math_number" id="878">
+                                                    <field name="NUM">27</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                            <value name="B">
+                                              <block type="logic_compare" id="879" inline="true">
+                                                <field name="OP">LT</field>
+                                                <value name="A">
+                                                  <block type="variables_get" id="880">
+                                                    <field name="TYPE">Number</field>
+                                                    <field name="VAR">Temp</field>
+                                                  </block>
+                                                </value>
+                                                <value name="B">
+                                                  <block type="math_number" id="881">
+                                                    <field name="NUM">31</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <statement name="DO4">
+                                          <block type="lcd_i2c_put" id="882" inline="false">
+                                            <value name="VALUE">
+                                              <block type="text" id="883">
+                                                <field name="TEXT">sultry</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </statement>
+                                        <statement name="ELSE">
+                                          <block type="lcd_i2c_put" id="884" inline="false">
+                                            <value name="VALUE">
+                                              <block type="text" id="885">
+                                                <field name="TEXT">EZ2get heatstroke</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </statement>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <statement name="ELSE">
+                      <block type="lcd_i2c_clear" id="802">
+                        <next>
+                          <block type="lcd_i2c_set_cursor" id="803" inline="true">
+                            <value name="COL">
+                              <block type="math_number" id="804">
+                                <field name="NUM">0</field>
+                              </block>
+                            </value>
+                            <value name="ROW">
+                              <block type="math_number" id="805">
+                                <field name="NUM">0</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="lcd_i2c_put" id="806" inline="false">
+                                <value name="VALUE">
+                                  <block type="text" id="807">
+                                    <field name="TEXT">Temp: </field>
+                                  </block>
+                                </value>
+                                <next>
+                                  <block type="lcd_i2c_set_cursor" id="808" inline="true">
+                                    <value name="COL">
+                                      <block type="math_number" id="809">
+                                        <field name="NUM">6</field>
+                                      </block>
+                                    </value>
+                                    <value name="ROW">
+                                      <block type="math_number" id="810">
+                                        <field name="NUM">0</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="lcd_i2c_put" id="811" inline="false">
+                                        <value name="VALUE">
+                                          <block type="variables_get" id="812">
+                                            <field name="TYPE">Number</field>
+                                            <field name="VAR">Temp</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="lcd_i2c_set_cursor" id="813" inline="true">
+                                            <value name="COL">
+                                              <block type="math_number" id="814">
+                                                <field name="NUM">8</field>
+                                              </block>
+                                            </value>
+                                            <value name="ROW">
+                                              <block type="math_number" id="815">
+                                                <field name="NUM">0</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="lcd_i2c_put" id="816" inline="false">
+                                                <value name="VALUE">
+                                                  <block type="text" id="817">
+                                                    <field name="TEXT">deg</field>
+                                                  </block>
+                                                </value>
+                                                <next>
+                                                  <block type="lcd_i2c_set_cursor" id="818" inline="true">
+                                                    <value name="COL">
+                                                      <block type="math_number" id="819">
+                                                        <field name="NUM">0</field>
+                                                      </block>
+                                                    </value>
+                                                    <value name="ROW">
+                                                      <block type="math_number" id="820">
+                                                        <field name="NUM">1</field>
+                                                      </block>
+                                                    </value>
+                                                    <next>
+                                                      <block type="lcd_i2c_put" id="821" inline="false">
+                                                        <value name="VALUE">
+                                                          <block type="text" id="822">
+                                                            <field name="TEXT">Humidity: </field>
+                                                          </block>
+                                                        </value>
+                                                        <next>
+                                                          <block type="lcd_i2c_set_cursor" id="823" inline="true">
+                                                            <value name="COL">
+                                                              <block type="math_number" id="824">
+                                                                <field name="NUM">10</field>
+                                                              </block>
+                                                            </value>
+                                                            <value name="ROW">
+                                                              <block type="math_number" id="825">
+                                                                <field name="NUM">1</field>
+                                                              </block>
+                                                            </value>
+                                                            <next>
+                                                              <block type="lcd_i2c_put" id="826" inline="false">
+                                                                <value name="VALUE">
+                                                                  <block type="variables_get" id="827">
+                                                                    <field name="TYPE">Number</field>
+                                                                    <field name="VAR">Humi</field>
+                                                                  </block>
+                                                                </value>
+                                                                <next>
+                                                                  <block type="lcd_i2c_set_cursor" id="828" inline="true">
+                                                                    <value name="COL">
+                                                                      <block type="math_number" id="829">
+                                                                        <field name="NUM">12</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <value name="ROW">
+                                                                      <block type="math_number" id="830">
+                                                                        <field name="NUM">1</field>
+                                                                      </block>
+                                                                    </value>
+                                                                    <next>
+                                                                      <block type="lcd_i2c_put" id="831" inline="false">
+                                                                        <value name="VALUE">
+                                                                          <block type="text" id="832">
+                                                                            <field name="TEXT">%</field>
+                                                                          </block>
+                                                                        </value>
+                                                                      </block>
+                                                                    </next>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>
