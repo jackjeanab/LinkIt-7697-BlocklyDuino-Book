@@ -1,0 +1,144 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="initializes_setup" id="80" x="13" y="13">
+    <statement name="CONTENT">
+      <block type="inout_digital_write" id="81">
+        <field name="PIN">7</field>
+        <field name="STAT">LOW</field>
+        <next>
+          <block type="inout_digital_write" id="82">
+            <field name="PIN">8</field>
+            <field name="STAT">LOW</field>
+            <next>
+              <block type="inout_digital_write" id="83">
+                <field name="PIN">9</field>
+                <field name="STAT">LOW</field>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="initializes_loop" id="84" x="338" y="13">
+    <statement name="CONTENT">
+      <block type="inout_digital_write" id="85">
+        <field name="PIN">7</field>
+        <field name="STAT">HIGH</field>
+        <next>
+          <block type="delay_custom" id="86" inline="false">
+            <value name="DELAY_TIME">
+              <block type="math_number" id="87">
+                <field name="NUM">1000</field>
+              </block>
+            </value>
+            <next>
+              <block type="inout_digital_write" id="88">
+                <field name="PIN">7</field>
+                <field name="STAT">LOW</field>
+                <next>
+                  <block type="delay_custom" id="89" inline="false">
+                    <value name="DELAY_TIME">
+                      <block type="math_number" id="90">
+                        <field name="NUM">1000</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="inout_digital_write" id="91">
+                        <field name="PIN">8</field>
+                        <field name="STAT">HIGH</field>
+                        <next>
+                          <block type="delay_custom" id="92" inline="false">
+                            <value name="DELAY_TIME">
+                              <block type="math_number" id="93">
+                                <field name="NUM">1000</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="inout_digital_write" id="94">
+                                <field name="PIN">8</field>
+                                <field name="STAT">LOW</field>
+                                <next>
+                                  <block type="delay_custom" id="95" inline="false">
+                                    <value name="DELAY_TIME">
+                                      <block type="math_number" id="96">
+                                        <field name="NUM">1000</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="inout_digital_write" id="97">
+                                        <field name="PIN">8</field>
+                                        <field name="STAT">HIGH</field>
+                                        <next>
+                                          <block type="delay_custom" id="98" inline="false">
+                                            <value name="DELAY_TIME">
+                                              <block type="math_number" id="99">
+                                                <field name="NUM">1000</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="inout_digital_write" id="100">
+                                                <field name="PIN">8</field>
+                                                <field name="STAT">LOW</field>
+                                                <next>
+                                                  <block type="delay_custom" id="101" inline="false">
+                                                    <value name="DELAY_TIME">
+                                                      <block type="math_number" id="102">
+                                                        <field name="NUM">1000</field>
+                                                      </block>
+                                                    </value>
+                                                    <next>
+                                                      <block type="inout_digital_write" id="103">
+                                                        <field name="PIN">9</field>
+                                                        <field name="STAT">HIGH</field>
+                                                        <next>
+                                                          <block type="delay_custom" id="104" inline="false">
+                                                            <value name="DELAY_TIME">
+                                                              <block type="math_number" id="105">
+                                                                <field name="NUM">1000</field>
+                                                              </block>
+                                                            </value>
+                                                            <next>
+                                                              <block type="inout_digital_write" id="106">
+                                                                <field name="PIN">9</field>
+                                                                <field name="STAT">LOW</field>
+                                                                <next>
+                                                                  <block type="delay_custom" id="107" inline="false">
+                                                                    <value name="DELAY_TIME">
+                                                                      <block type="math_number" id="108">
+                                                                        <field name="NUM">1000</field>
+                                                                      </block>
+                                                                    </value>
+                                                                  </block>
+                                                                </next>
+                                                              </block>
+                                                            </next>
+                                                          </block>
+                                                        </next>
+                                                      </block>
+                                                    </next>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>
